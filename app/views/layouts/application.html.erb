@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AngularJSExampleApp</title>
+  <%= stylesheet_link_tag "application", media: "all",
+    "data-turbolinks-track": "reload" %>
+  <%= javascript_include_tag "application",
+    "data-turbolinks-track": "reload" %>
+  <%#= javascript_include_tag "app.module", "data-turbolinks-track": false %>
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="myapp">
+
+<%= yield %>
+
+</body>
+</html>

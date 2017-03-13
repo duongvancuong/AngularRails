@@ -1,0 +1,3 @@
+== AngularJSRailsExampleApp
+
+See http://richonrails.com/articles/getting-started-with-angularjs-and-rails for details.

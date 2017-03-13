@@ -1,0 +1,68 @@
+<div class="container">
+  <h1>Visitors</h1>
+  <div ng-controller="visitorsController as visitorCtrl">
+    <div class="well">
+      <h3>Add a new Visitor</h3>
+      <form name="VisitorForm" ng-submit="visitorCtrl.submitForm(VisitorForm.$valid)">
+        <div class="row">
+          <div class="col-xs-6">
+            <input ng-if="!visitorCtrl.btnUpdate" type="text" ng-model="visitorCtrl.newVisitor.first_name" class="form-control" placeholder="First Name" required />
+            <input ng-if="visitorCtrl.btnUpdate" type="text" ng-model="visitorCtrl.updateObjectVisitor.first_name" class="form-control" placeholder="First Name" required />
+          </div>
+          <div class="col-xs-6">
+            <input ng-if="!visitorCtrl.btnUpdate" type="text" ng-model="visitorCtrl.newVisitor.last_name" class="form-control" placeholder="Last Name" required />
+            <input ng-if="visitorCtrl.btnUpdate" type="text" ng-model="visitorCtrl.updateObjectVisitor.last_name" class="form-control" placeholder="Last Name" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <input ng-if="!visitorCtrl.btnUpdate" type="text" ng-model="visitorCtrl.newVisitor.reason" class="form-control" placeholder="Reason for Visit" required />
+            <input ng-if="visitorCtrl.btnUpdate" type="text" ng-model="visitorCtrl.updateObjectVisitor.reason" class="form-control" placeholder="Reason for Visit" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <br />
+            <input type="text" ng-model="visitorCtrl.newVisitor.test" ng-init="visitorCtrl.newVisitor.test = '<%= @test %>'" class="form-control" placeholder="Reason for Visit" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <br />
+            <input ng-if="!visitorCtrl.btnUpdate" type="Submit" value="Add Visitor" ng-disabled="!VisitorForm.$valid" class="btn btn-primary" />
+            <input ng-if="visitorCtrl.btnUpdate" type="Submit" value="Update Visitor" ng-disabled="!VisitorForm.$valid" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <h3>Currently Visiting</h3>
+    <hr />
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Reason for Visit</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="!visitors.length">
+          <td colspan="4">No visitors in the building.</td>
+        </tr>
+        <tr ng-repeat="visitor in visitorCtrl.visitors">
+          <td>{{ visitor.first_name }}</td>
+          <td>{{ visitor.last_name }}</td>
+          <td>{{ visitor.reason }}</td>
+          <td>
+            <a class="btn btn-info" ng-click="visitorCtrl.getDateUpdate(visitor)">Update</a>
+            <a class="btn btn-danger" ng-click="visitorCtrl.deleteVisitor(visitor.id)">Remove</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
